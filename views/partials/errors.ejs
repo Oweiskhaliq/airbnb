@@ -1,0 +1,12 @@
+<% if (errorMassages.length > 0) { %>
+<div
+  class="border border-red-500 text-sm px-4 py-3 rounded bg-red-100 relative mb-4 text-red-500"
+>
+  <strong class="font-bold p-4">Error!</strong>
+  <span class="block sm:inline p-2">
+    <% errorMassages.forEach(function(error) { %>
+    <li><%= error %></li>
+    <% }); %>
+  </span>
+</div>
+<% } %>

@@ -1,0 +1,48 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-100">
+  <%- include('../partials/nav') %>
+  <main class="container mx-auto px-4 sm:px-6 py-6">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center text-red-500 mb-6 sm:mb-8">
+      Welcome to airbnb index page:
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+      <% registeredHomes.forEach(home => { %>
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+          <a href="/homes/<%= home._id %>">
+          <div class="relative">
+            <img src="/images/<%= home.photoUrl %>" alt="<%= home.houseName %>" class="w-full h-52 sm:h-48 md:h-44 object-cover">
+            <%- include('../partials/favourite', {home: home}) %>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center text-sm">
+              <span class="font-semibold text-gray-900"><%= home.houseName %></span>
+              <div class="flex items-center text-yellow-500">
+                <svg class="w-4 h-4 mr-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 
+                  0l1.286 3.974a1 1 0 00.95.69h4.18c.969 
+                  0 1.371 1.24.588 1.81l-3.387 2.46a1 
+                  1 0 00-.364 1.118l1.287 3.974c.3.921-.755 
+                  1.688-1.54 1.118l-3.387-2.46a1 1 
+                  0 00-1.175 0l-3.387 2.46c-.784.57-1.838-.197-1.54-1.118l1.287-3.974a1 
+                  1 0 00-.364-1.118L2.05 9.401c-.783-.57-.38-1.81.588-1.81h4.18a1 
+                  1 0 00.95-.69l1.286-3.974z"/>
+                </svg>
+                <span class="text-gray-700"><%= home.rating %></span>
+              </div>
+            </div>
+
+            <p class="text-sm text-gray-500 truncate"><%= home.location %></p>
+            <p class="text-sm text-gray-500">May 1–6</p>
+            <p class="text-sm text-gray-900 mt-1">
+              <span class="font-semibold">$<%= home.price %></span> per/nights
+            </p>
+          </div>
+        </a>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+</body>
+</html>
