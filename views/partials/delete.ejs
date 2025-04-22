@@ -1,0 +1,24 @@
+<div class="absolute top-2 right-2">
+  <form action="/favourites/delete/<%= home._id %>" method="POST" class="ml-2">
+    <button
+      type="submit"
+      class="text-white bg-transparent p-1.5 hover:block hover:text-red-500"
+      title="Remove from favourites"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        class="h-5 w-5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </form>
+</div>

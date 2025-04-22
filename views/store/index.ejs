@@ -13,7 +13,8 @@
           <a href="/homes/<%= home._id %>">
           <div class="relative">
             <img src="/images/<%= home.photoUrl %>" alt="<%= home.houseName %>" class="w-full h-52 sm:h-48 md:h-44 object-cover">
-            <%- include('../partials/favourite', {home: home}) %>
+             <!-- including the favourites buttons -->
+             <%- include('../partials/favourite', {home, isLoggedIn, favourites}) %>
           </div>
           <div class="p-4">
             <div class="flex justify-between items-center text-sm">
@@ -44,5 +45,7 @@
       <% }) %>
     </div>
   </main>
+  <%- include('../partials/footer') %>
+
 </body>
 </html>
