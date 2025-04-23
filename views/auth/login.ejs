@@ -1,33 +1,78 @@
 <%- include('../partials/head') %>
-  </head>
-  <body>
-    <%- include('../partials/nav') %>
-    <main class="container mx-auto mt-2 p-8 bg-white rounded-lg shadow-md ">
-      <h1 class="text-3xl font-bold mb-6 text-center  text-red-500"> Login with Email </h1>
-      <form action="/login" method="POST" class="max-w-md mx-auto ">
-        <!-- errors massages -->
-        <%- include('../partials/errors.ejs') %>
-        <input
-          type="text"
-          name="email"
-          placeholder="Enter your Email"
-          required
-          value="<%= oldInput ? oldInput.email : '' %>"
-          class="w-full px-4 py-1 mb-4 border text-sm  placeholder:text-sm  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your Password"
-          required
-          class="w-full px-4 py-1 mb-4 border text-sm  placeholder:text-sm  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
-        <input type="submit" value="Sign In" class=" w-full  mb-2 bg-red-500 text-white py-1  rounded-lg hover:bg-red-600 transition duration-300" />
+</head>
+<body class="bg-gray-100">
+  <%- include('../partials/nav') %>
 
-         <!-- Redirect to signup -->
-         <p class="text-center text-gray-600 text-balance mt-5 ">
-          Not Register Yet? <a href="/signup" class="text-red-500 hover:text-red-600 hover:underline-offset-4">signUp</a>
+  <!-- Login Modal -->
+  <main id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto p-4">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm mx-auto relative flex flex-col max-h-[90vh]">
+
+      <!-- Sticky Header & Close Button -->
+      <div class="sticky top-0 bg-white z-10 p-4 border-b flex justify-between items-center">
+        <h2 class="text-sm font-semibold text-gray-600">Log in or sign up</h2>
+        <a href="/" class="text-gray-400 hover:text-black text-xl font-semibold">✕</a>
+      </div>
+
+      <!-- Modal Body Scrollable -->
+      <div class="overflow-y-auto p-6 space-y-4">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-800">Welcome to Airbnb</h1>
+
+        <!-- Form -->
+        <form action="/login" method="POST" class="space-y-4">
+          <%- include('../partials/errors.ejs') %>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            value="<%= oldInput ? oldInput.email : '' %>"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+
+          <input
+            type="submit"
+            value="Continue"
+            class="w-full bg-[#dd1162] hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition duration-300"
+          />
+        </form>
+
+        <!-- Divider -->
+        <div class="flex items-center my-5">
+          <hr class="flex-grow border-t border-gray-300" />
+          <span class="mx-3 text-sm text-gray-500">or</span>
+          <hr class="flex-grow border-t border-gray-300" />
+        </div>
+
+        <!-- Social Logins -->
+        <div class="space-y-3">
+          <a href="/auth/google" class="w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg hover:bg-gray-50">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-2" alt="Google" />
+            <span class="text-sm">Continue with Google</span>
+          </a>
+          <a href="/auth/facebook" class="w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg hover:bg-gray-50">
+            <img src="https://www.svgrepo.com/show/349526/facebook.svg" class="w-5 h-5 mr-2" alt="Facebook" />
+            <span class="text-sm">Continue with Facebook</span>
+          </a>
+        </div>
+
+        <!-- Redirect to signup -->
+        <p class="text-center text-sm text-gray-600 mt-6">
+          Not registered yet? 
+          <a href="/signup" class="text-red-500 hover:underline">Sign up</a>
         </p>
-      </form>
-    </main>
-    <%- include('../partials/footer') %>
-  </body>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
 </html>

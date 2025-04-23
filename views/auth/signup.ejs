@@ -1,75 +1,106 @@
 <%- include('../partials/head') %>
-  </head>
-  <body>
-    <%- include('../partials/nav') %>
-    <main class="container mx-auto mt-2 p-8 bg-white rounded-lg shadow-md">
-      <h1 class="text-3xl font-bold mb-6 text-center text-red-500"> Register your Account</h1>
-      <form action="/signup" method="POST" class="max-w-md mx-auto">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <%- include('../partials/nav') %>
+
+  <main class="flex-1 flex items-center justify-center px-4 py-10">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 overflow-y-auto max-h-screen">
+      
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-lg font-semibold text-gray-700">Sign up</h2>
+        <a href="/" class="text-gray-400 hover:text-black text-xl font-semibold">✕</a>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-xl font-bold text-gray-800 mb-4">Register your Account</h1>
+
+      <!-- Form -->
+      <form action="/signup" method="POST" class="space-y-4">
         <%- include('../partials/errors.ejs') %>
-        
-        
-     <!-- name -->
-        <div class="flex space-x-4">
+
+        <!-- Name Fields -->
+        <div class="flex flex-col sm:flex-row gap-3">
           <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          required
-          value="<%= oldInput ? oldInput.firstName : '' %>"
-          class="w-full px-4 py-1 mb-4 border text-sm  placeholder:text-sm  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
+            type="text"
+            name="firstName"
+            placeholder="First name"
+            required
+            value="<%= oldInput ? oldInput.firstName : '' %>"
+            class="w-full sm:w-1/2 px-4 py-2 border border-gray-300 rounded-lg text-sm placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
           <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value="<%= oldInput ? oldInput.lastName : '' %>"
-          class="w-full px-4 py-1 mb-4 border text-sm  placeholder:text-sm  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
+            type="text"
+            name="lastName"
+            placeholder="Last name"
+            value="<%= oldInput ? oldInput.lastName : '' %>"
+            class="w-full sm:w-1/2 px-4 py-2 border border-gray-300 rounded-lg text-sm placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
         </div>
-          <input
+
+        <!-- Email -->
+        <input
           type="email"
           name="email"
+          placeholder="Email"
+          required
           value="<%= oldInput ? oldInput.email : '' %>"
-          placeholder="test@gmail.com"
-          class="w-full px-4 py-1 mb-4 border text-sm  placeholder:text-sm  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
-          <!-- password -->
-          <div class="flex space-x-4">
-            <input
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+
+        <!-- Passwords -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input
             type="password"
             name="password"
-            placeholder="Enter your Password"
+            placeholder="Password"
             required
-           
-            class="w-full px-4 py-1 mb-4 border text-sm  placeholder:text-sm  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
-            <input
+            class="w-full sm:w-1/2 px-4 py-2 border border-gray-300 rounded-lg text-sm placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+          <input
             type="password"
             name="confirmPassword"
-            placeholder="Confirm your Password"
+            placeholder="Confirm"
             required
-            class="w-full px-4 py-1 mb-4 border text-sm  placeholder:text-sm  rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"/>
-          </div>
-      
-          <div class=" flex space-x-4 mb-4 items-center ">
-            <p>UserType:</p>
-            <label>
-              <input type="radio" value="guest" name="userType" id="guest" class="p-2"  <% if (oldInput.userType === 'guest') { %> checked <% } %> />
-              <span>Guest</span>
-            </label>
-            <label>
-              <input type="radio" value="host" name="userType" id="host" class="p-2"  <% if (oldInput.userType === 'host') { %> checked <% } %> />
+            class="w-full sm:w-1/2 px-4 py-2 border border-gray-300 rounded-lg text-sm placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+        </div>
 
-              <span>Host</span>
-            </label>
-          </div>
-          <div class="p-4 ">
-            <input type="checkbox" name="terms" id="terms" class="p-2" required />
-            <label for="terms">I accept the terms and conditions</label>
-          </div>
-        <input type="submit" value="Register" class="w-full  mb-2 bg-red-500 text-white py-1  rounded-lg hover:bg-red-600 transition duration-300" />
-           <!-- Redirect to login -->
-      <p class="text-center text-gray-600 text-balance mt-5 ">
-        Already have an Account? <a href="/login" class="text-red-500 hover:text-red-600 hover:underline-offset-4">Login </a>
-      </p>
+        <!-- User Type -->
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+          <span>User Type:</span>
+          <label class="flex items-center gap-1">
+            <input type="radio" name="userType" value="guest" <% if (oldInput.userType === 'guest') { %> checked <% } %> />
+            Guest
+          </label>
+          <label class="flex items-center gap-1">
+            <input type="radio" name="userType" value="host" <% if (oldInput.userType === 'host') { %> checked <% } %> />
+            Host
+          </label>
+        </div>
+
+        <!-- Terms -->
+        <label class="flex items-center gap-2 text-sm text-gray-600">
+          <input type="checkbox" name="terms" required />
+          I accept the terms and conditions
+        </label>
+
+        <!-- Submit -->
+        <input
+          type="submit"
+          value="Register"
+          class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold transition duration-300"
+        />
       </form>
-    </main>
-    <%- include('../partials/footer') %>
-  </body>
+
+      <!-- Redirect -->
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Already have an account?
+        <a href="/login" class="text-red-500 hover:underline">Login</a>
+      </p>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
 </html>
