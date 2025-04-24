@@ -34,7 +34,8 @@ exports.getEditHome = (req, res, next) => {
 };
 
 exports.getHostHomes = (req, res, next) => {
-  Home.find().then((registeredHomes) => {
+  const userId = req.session.user._id;
+  Home.find({ userId: userId }).then((registeredHomes) => {
     res.render("host/host-home-list", {
       registeredHomes: registeredHomes,
       pageTitle: "Host Homes List",
@@ -48,6 +49,7 @@ exports.getHostHomes = (req, res, next) => {
 exports.postAddHome = (req, res, next) => {
   const { houseName, price, location, rating, photoUrl, description } =
     req.body;
+  const userId = req.session.user._id;
   const home = new Home({
     houseName,
     price,
@@ -55,6 +57,7 @@ exports.postAddHome = (req, res, next) => {
     rating,
     photoUrl,
     description,
+    userId,
   });
 
   home

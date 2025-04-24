@@ -9,6 +9,10 @@ const houseSchema = new mongoose.Schema({
   rating: { type: String, required: true },
   photoUrl: String,
   description: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 // houseSchema.pre("findOneAndDelete", async function (next) {
